@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    font-family: 'Nunito', sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;700;800&family=Poppins:wght@100;200;700&display=swap');
+
+
+:root {
+    --orange-1: #ffdb83;
+    --orange-2: #ffeab6;
+    --orange-3: #fff9e9;
+
+    --black-1 : #000000;
+    --black-2 : #111111;
+    --black-3 : #3b3b3b;
+
+    --white-1 : #ffffff;
+
+}
+
+body{
+    height: 100vh;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

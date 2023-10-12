@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('Layout.main');
+    return redirect('/dashboard');
 });
+Route::get('/dashboard',[DashboardController::class,'dashboard'] );
+Route::get('/dashboard/@{location}',[DashboardController::class,'dashboard'] );
