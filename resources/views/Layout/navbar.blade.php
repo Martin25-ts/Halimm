@@ -1,5 +1,5 @@
 <div class="text-center" style="padding: 18.84% 0 5.59% 0">
-    <img src="https://ucarecdn.com/b2facfe5-d66f-41c2-ac40-2820fd5eeb17/EllockerLogo1.png" class="rounded" style="width: 38.14%; " alt="...">
+    <img src="https://ucarecdn.com/36f1e9fd-0dbd-4a1c-be32-019e2171b0da/-/preview/500x500/-/quality/smart/-/format/auto/" class="rounded" style="width: 38.14%; " alt="...">
 </div>
 
 <div class="account-navbar" >
@@ -12,13 +12,13 @@
             <div class="user-bar-button">
                 <div class="profile-button">
                     <a href="">
-                        <img src="{{ asset('assests/icon/profile.svg') }}" alt="">
+                        <img src="https://ucarecdn.com/0f7fc80f-11a1-4958-9089-8b76b406a81f/" alt="">
                     </a>
 
                 </div>
                 <div class="logout-button">
                     <a href="">
-                        <img src="{{ asset('assests/icon/logout-1.svg') }}" alt="">
+                        <img src="https://ucarecdn.com/0805448b-8346-4b6c-8750-6b0e9ebd616e/" alt="">
                     </a>
 
                 </div>

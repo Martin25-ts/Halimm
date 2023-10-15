@@ -27,7 +27,7 @@
             <div class="button-order">
                 <a href="">
                     <div class="plus-image">
-                        <img src="{{ asset('assests/icon/add.svg') }}" alt="">
+                        <img src="https://ucarecdn.com/d92d3aa0-af95-4d2d-a0b5-aebbd0ebda6e/" alt="">
                     </div>
                     <div class="order-text">
                         <h1>Pesan</h1>

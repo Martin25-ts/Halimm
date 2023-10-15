@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('status_locker_id');
             $table->unsignedBigInteger('location_id');
             $table->string('locker_size',10);
+            $table->integer('status_door');
             $table->timestamps();
 
 

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -11,7 +13,7 @@
     @stack('font-content')
 
 
-    <link rel="shortcut icon" href="https://ucarecdn.com/b2facfe5-d66f-41c2-ac40-2820fd5eeb17/EllockerLogo1.png">
+    <link rel="shortcut icon" href="https://ucarecdn.com/36f1e9fd-0dbd-4a1c-be32-019e2171b0da/-/preview/500x500/-/quality/smart/-/format/auto/">
     <title>@yield('title')</title>
 
 </head>

@@ -21,6 +21,7 @@
 
 body{
     height: 100vh;
+    background: var(--orange-3);
 }
 
 
