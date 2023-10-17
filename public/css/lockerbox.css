@@ -1,0 +1,62 @@
+.locker{
+    border-radius: 9px;
+    background: var(--orange-1);
+    width: 100%;
+    min-height: calc(8.691vh);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: calc(1.073vh);
+
+}
+
+.text-content{
+    width: 67.9%;
+}
+
+.text-content h1,
+.locker-size h1{
+    margin: 0;
+}
+
+.text-content .locker-number{
+    color: var(--black-3);
+    font-weight: 800;
+    font-size: 188%;
+}
+
+.text-content .locker-place{
+    color: var(--black-1);
+    font-weight: 400;
+    font-size: 95%;
+}
+
+
+
+.locker-size{
+    width: calc(16.512vw);
+    height:calc(7.082vh);
+    align-items: center;
+    text-align: center;
+
+}
+
+.circle{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--orange-3);
+    background: #242424;
+    border-radius: 180px;
+
+}
+
+
+.circle h1{
+
+    font-weight: 800;
+    font-size: 200%;
+}

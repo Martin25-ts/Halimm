@@ -1,9 +1,16 @@
+.text-center{
+    margin: calc(8.691vh) 0 calc(2.58vh) 0;
+    height: calc(17.597vh);
+
+}
+
+
 .account-navbar{
     width: 100%;
-    height: 7.41vh;
+    height: calc(7.403vh);
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: calc(2.146vh);
 }
 
 .bar-profile{
@@ -18,7 +25,7 @@
 
 
     height: 100%;
-    width: 84.42%;
+    width: calc(84.42vw);
 }
 .container-bar-profile{
     padding-left: 4.13%;

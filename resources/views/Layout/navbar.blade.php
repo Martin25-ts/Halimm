@@ -1,5 +1,5 @@
-<div class="text-center" style="padding: 18.84% 0 5.59% 0">
-    <img src="https://ucarecdn.com/36f1e9fd-0dbd-4a1c-be32-019e2171b0da/-/preview/500x500/-/quality/smart/-/format/auto/" class="rounded" style="width: 38.14%; " alt="...">
+<div class="text-center" >
+    <img src="https://ucarecdn.com/36f1e9fd-0dbd-4a1c-be32-019e2171b0da/-/preview/500x500/-/quality/smart/-/format/auto/" class="rounded"  height="100%" alt="...">
 </div>
 
 <div class="account-navbar" >

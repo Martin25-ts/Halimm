@@ -20,19 +20,19 @@ class LocationSeeder extends Seeder
         $listlocation = [
             [
                 'location_name' => 'Universitas Bina Nusantara, Lt1',
-                'location_url' => 'kmg-ang-lt1',
+                'location_url' => 'KmgAngLt1',
                 'created_at' => $now,
                 'updated_at' => $now,
             ],
             [
                 'location_name' => 'Universitas Bina Nusantara, Lt3',
-                'location_url' => 'kmg-ang-lt3',
+                'location_url' => 'KmgAngLt3',
                 'created_at' => $now,
                 'updated_at' => $now,
             ],
             [
                 'location_name' => 'Universitas Bina Nusantara, Lt2',
-                'location_url' => 'kmg-syh-lt2',
+                'location_url' => 'KmgSyhLt2',
                 'created_at' => $now,
                 'updated_at' => $now,
             ],
