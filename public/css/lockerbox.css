@@ -13,6 +13,7 @@
 
 .text-content{
     width: 67.9%;
+    height: fit-content;
 }
 
 .text-content h1,
@@ -37,6 +38,8 @@
 .locker-size{
     width: calc(16.512vw);
     height:calc(7.082vh);
+
+
     align-items: center;
     text-align: center;
 

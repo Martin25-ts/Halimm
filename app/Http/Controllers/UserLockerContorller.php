@@ -16,7 +16,9 @@ class UserLockerContorller extends Controller
     }
 
     public function getLocker($lockerid){
-        $locker = Locker::where('locker_id', '=', $lockerid)->get();
+
+        $locker  = Locker::find($lockerid);
+        // $locker = Locker::where('locker_id', '=', $lockerid)->get();
 
         return $locker;
     }

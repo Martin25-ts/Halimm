@@ -9,7 +9,7 @@
 @endpush
 
 @push('js-content')
-    <Script>
+    {{-- <Script>
         var data1= @json($datalocker);
         var data2= @json($location);
 
@@ -17,7 +17,7 @@
         console.log(data1);
         console.log(data2);
 
-    </Script>
+    </Script> --}}
 @endpush
 
 @section('content')

@@ -2,7 +2,7 @@
 
 .list-locker {
     width: 100%;
-    height: calc(58.262vh);
+    height: calc(58.262vh) !important;
     display: flex;
     justify-content: center;
 }

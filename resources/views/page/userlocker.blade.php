@@ -17,13 +17,17 @@
 
     <script>
         var screenHeight = $(window).height();
+        var screenWidth = $(window).width();
 
             // Menampilkan tinggi layar di console (opsional)
             console.log("Tinggi Layar: " + screenHeight + " piksel");
+            console.log("Lebar Layar : " + screenWidth + " piksel");
 
             // Menambahkan tinggi layar ke dalam elemen HTML
             // $('span').append('<p>Tinggi Layar: ' + screenHeight + ' piksel</p>');
     </script>
+
+
 @endpush
 
 
@@ -37,16 +41,35 @@
     <section class="locker-control">
         <div class="locker-controll-content">
             <div class="locker-control-container">
-                @foreach ($datalocker as $datalocker)
+                {{-- @foreach ($datalocker as $datalocker) --}}
                     @include('Layout.lockerborder')
-                @endforeach
+
 
                 <div class="locker-order">
                     <div class="locker-buttons">
-                        <button class="button-unlock">
-                            <img src="https://ucarecdn.com/ddf211f4-e360-4c85-b386-0181e4174f08/" alt="">
-                            <h1 class="button-title">Buka</h1>
-                        </button>
+                        @if ($datalocker->status_door == true)
+                            <form action="{{ route('Unlock', ['location' => $location, 'lockerid'=> $datalocker->locker_id]) }}" method="post">
+                                @csrf
+                                <button id="unlock-button" class="button-unlock">
+                                    <img src="https://ucarecdn.com/ddf211f4-e360-4c85-b386-0181e4174f08/" alt="">
+                                    <h1 class="button-title">Buka</h1>
+                                </button>
+                            </form>
+
+                        @else
+
+                            <form action="{{ route('Lock', ['location' => $location, 'lockerid' => $datalocker->locker_id]) }}" method="post">
+                                @csrf
+                                <button id="lock-button" data-lockerid="{{ $datalocker->locker_id }}" class="button-unlock">
+                                    <img src="https://ucarecdn.com/a84c688e-83ba-4ea0-b6ee-2999ac810166/" alt="">
+                                    <h1 class="button-title">Kunci</h1>
+                                </button>
+                            </form>
+
+                        @endif
+
+
+
                         <button class="button-finish-rent">
                             <h1 class="button-title">SELESAIKAN PENYEWAAN</h1>
                         </button>

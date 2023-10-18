@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DoorController;
 use App\Http\Controllers\UserLockerContorller;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +24,6 @@ Route::get('/dashboard/@{location}',[DashboardController::class,'dashboard'] );
 
 
 Route::get('/locker/@{location}/{lockerid}', [UserLockerContorller::class, 'lockerpage'])->name('locker.page');
+
+Route::post('/locker/@{location}/{lockerid}/setLock', [DoorController::class,'setLock'])->name('Lock');
+Route::post('/locker/@{location}/{lockerid}/setUnlock', [DoorController::class,'setUnlock'])->name('Unlock');

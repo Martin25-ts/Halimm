@@ -1,10 +1,11 @@
 <div class="list-locker">
     <div class="border-list-locker">
         <div class="container-list-locker">
-
-            @foreach ($datalocker as $datalocker)
-                @include('Layout.lockerborder')
-            @endforeach
+            @if ($datalocker !== null)
+                @foreach ($datalocker as $datalocker)
+                    @include('Layout.lockerborder')
+                @endforeach
+            @endif
 
             <div class="button-order">
                 <a href="">

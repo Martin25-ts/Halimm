@@ -14,11 +14,13 @@ class DashboardController extends Controller
     public function dashboard($location = NULL)
     {
 
-        $datalocker = $this->getAllLockersByLocation($location);
+
 
         if (is_null($location)) {
-            return view('page.dashboard', compact('datalocker','location'));
+            $datalocker = NULL;
+            return view('page.dashboard', compact('datalocker'));
         } else {
+            $datalocker = $this->getAllLockersByLocation($location);
             return view('page.dashboard', compact('datalocker', 'location'));
         }
 
