@@ -32,4 +32,12 @@ class DoorController extends Controller
 
         return Redirect::route('locker.page', ['location' => $location, 'lockerid' => $lockerid]);
     }
+
+
+    public function getStatusLocker($lockerid){
+
+        $locker = Locker::find($lockerid);
+
+        return $locker->status_door;
+    }
 }

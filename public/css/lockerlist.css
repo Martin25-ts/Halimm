@@ -1,10 +1,13 @@
 
 
+
 .list-locker {
     width: 100%;
-    height: calc(58.262vh) !important;
+    height: 52.3% ;
     display: flex;
     justify-content: center;
+
+    margin-top: 5vh;
 }
 
 .border-list-locker {
@@ -16,7 +19,7 @@
 
     border-radius: 24px;
     background: var(--black-1);
-
+    max-width: 800px;
     width: 84.42%;
     height: 100%;
 
@@ -27,15 +30,12 @@
 
 .container-list-locker {
 
+    height: 90%;
     border-radius: 9px;
     overflow-y: auto;
     width: 90.6%;
-    /* height: 89.87%; */
-
-    height: calc(52.361vh);
 
     position: relative;
-
 
 }
 
@@ -64,6 +64,8 @@
 
 
 .button-order{
+
+
     width: 100%;
     position: sticky;
     bottom: 5%;
@@ -88,7 +90,8 @@
     background: var(--orange-2);
     border-radius: 60px;
 
-    width: calc(43.721vw);
+    max-width: 200px;
+    width: 100%;
     height: calc(3.863vh);
 
     -ms-box-shadow:1px 6px 6px 1px rgba(0,0,0,0.37);

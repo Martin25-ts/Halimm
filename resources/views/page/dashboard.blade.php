@@ -3,9 +3,9 @@
 @section('title', 'Dashboard - Ellocker')
 
 @push('css-content')
-    <link rel="stylesheet" href="{{ asset('css/lockerbox.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/lockerlist.css') }}">
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/lockerlist.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/lockerbox.css') }}">
 @endpush
 
 @push('js-content')

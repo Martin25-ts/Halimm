@@ -27,3 +27,4 @@ Route::get('/locker/@{location}/{lockerid}', [UserLockerContorller::class, 'lock
 
 Route::post('/locker/@{location}/{lockerid}/setLock', [DoorController::class,'setLock'])->name('Lock');
 Route::post('/locker/@{location}/{lockerid}/setUnlock', [DoorController::class,'setUnlock'])->name('Unlock');
+Route::get('/locker/{lockerid}', [DoorController::class,'getStatusLocker']);

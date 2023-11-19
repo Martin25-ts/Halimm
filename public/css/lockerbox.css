@@ -1,19 +1,40 @@
-.locker{
-    border-radius: 9px;
-    background: var(--orange-1);
+.locker-container{
     width: 100%;
-    min-height: calc(8.691vh);
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    background: var(--orange-1);
+    border-radius: 9px;
+
+    margin-bottom: 20px;
+}
+
+.locker-link{
+    width: 100%;
+    height: fit-content;
+
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.locker{
+
+
+    width: 95%;
+    height: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
-
-    margin-bottom: calc(1.073vh);
+    justify-content: space-between;
 
 }
 
 .text-content{
-    width: 67.9%;
-    height: fit-content;
+    width: 72vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .text-content h1,
@@ -24,33 +45,32 @@
 .text-content .locker-number{
     color: var(--black-3);
     font-weight: 800;
-    font-size: 188%;
+    font-size: 30px;
 }
 
 .text-content .locker-place{
     color: var(--black-1);
     font-weight: 400;
-    font-size: 95%;
+    font-size: 15px;
 }
 
 
 
 .locker-size{
-    width: calc(16.512vw);
-    height:calc(7.082vh);
+    width: 23vw;
+    height: auto ;
 
-
-    align-items: center;
-    text-align: center;
+    display: flex;
+    justify-content: center;
 
 }
 
 .circle{
     width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: auto ;
+
+
+
     color: var(--orange-3);
     background: #242424;
     border-radius: 180px;
@@ -59,7 +79,7 @@
 
 
 .circle h1{
-
+    text-align: center;
     font-weight: 800;
-    font-size: 200%;
+    font-size: 32px;
 }

@@ -20,7 +20,6 @@
                     <a href="">
                         <img src="https://ucarecdn.com/0805448b-8346-4b6c-8750-6b0e9ebd616e/" alt="">
                     </a>
-
                 </div>
             </div>
         </div>

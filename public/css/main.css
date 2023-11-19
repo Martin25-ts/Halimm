@@ -20,16 +20,10 @@
     --white-1 : #ffffff;
 
 }
-html{
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-
-}
 
 body{
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: auto;
     overflow: hidden;
     background: var(--orange-3);
 }
