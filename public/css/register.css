@@ -1,0 +1,86 @@
+body{
+    overflow: auto;
+
+}
+
+
+header {
+    margin-top: 8.6vh;
+    width: 100%;
+    text-align: center;
+}
+
+header img {
+    max-width: 250px;
+    width: 38.1%;
+    height: auto;
+}
+
+
+main {
+    margin-top: 5.7vh;
+    margin-bottom: 20px !important;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+}
+
+main form{
+    max-width: 580px;
+    width: 98%;
+
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputGroup,
+.action-login{
+    font-family: "Segoe UI", sans-serif;
+    margin: 1em 0 1em 0;
+    width: 85.9%;
+    position: relative;
+}
+
+.inputGroup input {
+    font-size: 100%;
+    padding: 0.8em;
+    outline: none;
+    border: 2px solid rgb(200, 200, 200);
+    background-color: transparent;
+    border-radius: 20px;
+    width: 100%;
+}
+
+.inputGroup label {
+    font-size: 100%;
+    position: absolute;
+    left: 0;
+    padding: 0.8em;
+    margin-left: 0.5em;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    color: rgb(100, 100, 100);
+}
+
+.inputGroup :is(input:focus, input:valid) ~ label {
+    transform: translateY(-50%) scale(0.9);
+    margin: 0em;
+    margin-left: 1.3em;
+    padding: 0.4em;
+    background-color: var(--orange-3);
+}
+
+.inputGroup :is(input:focus, input:valid) {
+    border-color: var(--black-3);
+}
+
+
+form button{
+    font-weight: 700;
+    border-radius: 10px;
+    background-color: var(--orange-1);
+}

@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
+use App\Models\User;
 use App\Models\Locker;
-use Illuminate\Database\Eloquent\Collection\toSql;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Collection\toSql;
 
 
 
@@ -15,18 +18,38 @@ class DashboardController extends Controller
     {
 
 
-
-        if (is_null($location)) {
-            $datalocker = NULL;
-            return view('page.dashboard', compact('datalocker'));
-        } else {
-            $datalocker = $this->getAllLockersByLocation($location);
-            return view('page.dashboard', compact('datalocker', 'location'));
-        }
+            $usertransactions = $this->getAllUserTransaction(Auth::user()->user_id);
+            // $datalocker = $this->getAllLockersByLocation($location);
+            return view('page.dashboard', compact('usertransactions', 'location'));
 
     }
 
+    public function getAllUserTransaction(Request $request){
+        $token = $request->api_token;
+        $user = User::where('api_token', $token)->first();
 
+        if (!$user) {
+            return response()->json(['error' => 'Invalid API token'], 401);
+        }
+
+        try {
+            $transaction = Transaction::where('user_id', $user->user_id)
+            ->whereIn('status_transaction_id', [1,2])
+            ->join('transaction_details', 'transactions.transaction_id', '=', 'transaction_details.transaction_id')
+            ->join('ms_lockers', 'transaction_details.locker_id', '=', 'ms_lockers.locker_id')
+            ->get();
+        } catch (QueryException $e) {
+            return response()->json([
+                "error" => "Gagal Mendapatkan ListLocker"
+            ],500);
+        }
+
+        return response()->json([
+            $transaction
+        ],201);
+
+
+    }
 
     public function getAllLockersByLocation($location)
     {

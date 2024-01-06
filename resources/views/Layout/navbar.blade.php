@@ -7,9 +7,20 @@
         <div class="container-bar-profile">
             <div class="user-profile-name">
                 <span class="greating">Hi,</span>
-                <span class="user-name">Martin Siagian</span>
+                <span class="user-name">{{Auth::user()->front_name}}</span>
             </div>
             <div class="user-bar-button">
+                <div class="home-button">
+
+                    @if ($location == NULL)
+                        <a href="{{ route('dashboard') }}">
+                    @else
+                        <a href="{{ route('dashboard_location', ['location' => $location]) }}">
+                    @endif
+
+                        <img src="https://ucarecdn.com/239279f8-7577-4fcc-97a3-c8e22b74728e/" alt="">
+                    </a>
+                </div>
                 <div class="profile-button">
                     <a href="">
                         <img src="https://ucarecdn.com/0f7fc80f-11a1-4958-9089-8b76b406a81f/" alt="">
@@ -17,7 +28,7 @@
 
                 </div>
                 <div class="logout-button">
-                    <a href="">
+                    <a href="{{ route('logout') }}">
                         <img src="https://ucarecdn.com/0805448b-8346-4b6c-8750-6b0e9ebd616e/" alt="">
                     </a>
                 </div>

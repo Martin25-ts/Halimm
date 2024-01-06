@@ -20,7 +20,10 @@ class StatusTransactionSeeder extends Seeder
                 'status_transaction' => 'InProgres'
             ],
             [
-                'status_transaction' => 'InProgres'
+                'status_transaction' => 'MoreTime'
+            ],
+            [
+                'status_transaction' => 'Finished'
             ],
         ];
 

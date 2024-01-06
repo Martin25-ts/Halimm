@@ -77,11 +77,13 @@
 }
 
 .profile-button,
-.logout-button{
+.logout-button,
+.home-button{
     filter: brightness(0) invert(1) grayscale(100%);
 }
 
 .profile-button a img,
-.logout-button a img{
+.logout-button a img,
+.home-button a img{
     width: 100%;
 }

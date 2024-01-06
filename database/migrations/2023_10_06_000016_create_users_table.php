@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string('front_name',500);
             $table->string('last_name',255);
             $table->string('email',50)->unique();
-            $table->string('password',25);
+            $table->string('password',255);
             $table->string('user_phone',20)->unique();
+            $table->string('api_token',1000)->unique()->nullable()->default(null);
             $table->unsignedBigInteger('role_id');
             $table->unsignedBigInteger('status_user_id');
 

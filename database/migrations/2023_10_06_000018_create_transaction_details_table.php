@@ -18,7 +18,6 @@ return new class extends Migration
             $table->unsignedBigInteger('transaction_id');
             $table->integer('duration');
             $table->unsignedBigInteger('locker_id');
-            $table->integer('locker_potition');
             $table->timestamps();
 
             $table->foreign('transaction_id')->references('transaction_id')->on('transactions')->onDelete('cascade')->onUpdate('cascade');

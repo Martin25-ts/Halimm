@@ -18,6 +18,7 @@ return new class extends Migration
             $table->dateTime('transaction_date');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('status_transaction_id');
+            $table->timestamps();
 
 
             $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade')->onUpdate('cascade');
