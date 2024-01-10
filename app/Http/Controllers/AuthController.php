@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Routing\Controller;
 
 class AuthController extends Controller
 {
@@ -18,13 +19,36 @@ class AuthController extends Controller
         return view('page.prelog');
     }
 
-
     public function login(){
         return view('page.login');
     }
 
     public function regis(){
         return view('page.register');
+    }
+
+    private function hashPassword($password)
+    {
+        return Hash::make($password);
+    }
+
+    private function handleRegistrationErrors($errorCode)
+    {
+        $message = ($errorCode == 1062) ? 'Email atau nomor ponsel sudah terdaftar.' : 'Terjadi kesalahan saat registrasi. Silakan coba lagi.';
+        return response()->json(['success' => false, 'message' => $message], ($errorCode == 1062) ? 401 : 409);
+    }
+
+    private function handleAuthErrors($user, $username)
+    {
+        return $user ? response()->json(['token' => $this->generateToken($user, $username)], 200) :
+            response()->json(['message' => 'Email atau Password salah'], 401);
+    }
+
+    private function generateToken($user, $username)
+    {
+        $token = md5(time()) . '.' . md5($username);
+        $user->forceFill(['api_token' => $token])->save();
+        return $token;
     }
 
 
@@ -40,30 +64,15 @@ class AuthController extends Controller
         $remember = $request->has('remember');
 
         if (Auth::attempt($credentials, $remember)) {
-
-
             $email = Auth::user()->email;
-
-            Cookie::queue('username', $request->username, 60 * 24 * 365);
-
-            if ($remember) {
-                Cookie::queue('password', $request->password, 60 * 24);
-            }
-
-            Session::put('mysession',$credentials);
-
+            session(['mysession' => $credentials]);
             return redirect()->route('dashboard')->with('success' , 'Berhasil Masuk !<br>Hallo '. Auth::user()->front_name);
         } else {
 
             $user = User::where($loginField, $credentials[$loginField])->first();
+            return $user ? redirect()->route('log')->with('error', 'Password yang Anda masukkan salah.') :
+                redirect()->route('log')->with('error', 'Email atau nomor ponsel tidak terdaftar.');
 
-            if ($user) {
-
-                return redirect()->route('log')->with('error', 'Password yang Anda masukkan salah.');
-            } else {
-
-                return redirect()->route('log')->with('error', 'Email atau nomor ponsel tidak terdaftar.');
-            }
         }
     }
 
@@ -72,9 +81,7 @@ class AuthController extends Controller
 
         $username = $request->username;
         $password = $request->password;
-
         $loginField = filter_var($username, FILTER_VALIDATE_EMAIL) ? 'email' : 'user_phone';
-
         $credentials = [
             $loginField => $username,
             'password' => $password,
@@ -82,24 +89,7 @@ class AuthController extends Controller
 
 
         if(Auth::attempt($credentials,true)){
-            $user = Auth::user();
-            Session::put('mysession',$credentials);
-            if ($user) {
-                $token = md5(time()) . '.' . md5($username);
-
-                $user->forceFill([
-                    'api_token' => $token,
-                    // 'remember_token' => $token,
-                ])->save();
-
-                return response()->json([
-                    'token' => $token,
-                ],200);
-            } else {
-                return response()->json([
-                    'message' => 'Gagal mendapatkan objek pengguna setelah otentikasi.',
-                ], 500);
-            }
+            return $this->handleAuthErrors(Auth::user(), $credentials[$loginField]);
         }
 
 
@@ -119,7 +109,7 @@ class AuthController extends Controller
     public function logoutMobile(Request $request){
         $token = $request->api_token;
 
-        if($token == NULL || empty($token)){
+        if(empty($token)){
             return response()->json([
                 'succes' => false,
                 'message' => 'Anda Harus Login Ulang'
@@ -127,11 +117,10 @@ class AuthController extends Controller
         }
 
         $user = User::where('api_token',  $token)->first();
+
         if ($user) {
-            // Temukan user dengan api_token
             $user->api_token = null;
             $user->save();
-
             Auth::logout();
             return response()->json([
                 'message' => 'success'
@@ -145,9 +134,6 @@ class AuthController extends Controller
 
     }
 
-
-
-
     public function addUser(Request $request){
         try {
             $now = now();
@@ -156,7 +142,7 @@ class AuthController extends Controller
                 'front_name' => $request->namadepan,
                 'last_name' => $request->namabelakang,
                 'email' => $request->email,
-                'password' => bcrypt($request->password),
+                'password' => $this->hashPassword($request->password),
                 'user_phone' => $request->nomorponsel,
                 'role_id' => 2,
                 'status_us er_id' => 1,
@@ -166,15 +152,7 @@ class AuthController extends Controller
 
             return redirect()->route('log')->with('success', 'Registrasi berhasil! Silakan masuk.');
         } catch (QueryException $e) {
-            $errorCode = $e->errorInfo[1];
-
-            if ($errorCode == 1062) { // Duplicate entry error code
-                return redirect()->route('regis')->with('error', 'Email atau nomor ponsel sudah terdaftar.');
-            }
-
-            return redirect()->route('regis')->with('error', 'Terjadi kesalahan saat registrasi. Silakan coba lagi.');
-        } catch (Exception $e) {
-            return redirect()->route('regis')->with('error', 'Terjadi kesalahan saat registrasi. Silakan coba lagi.');
+            return $this->handleRegistrationErrors($e->errorInfo[1]);
         }
     }
 
@@ -186,7 +164,7 @@ class AuthController extends Controller
                 'front_name' => $request->namadepan,
                 'last_name' => $request->namabelakang,
                 'email' => $request->email,
-                'password' => bcrypt($request->password),
+                'password' => $this->hashPassword($request->password),
                 'user_phone' => $request->nomorponsel,
                 'role_id' => 2,
                 'status_user_id' => 1,
@@ -202,31 +180,16 @@ class AuthController extends Controller
                 'body' => $newuser
             ],200);
         } catch (QueryException $e) {
-            $errorCode = $e->errorInfo[1];
-
-            if ($errorCode == 1062) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Email atau nomor ponsel sudah terdaftar.'
-                ],401);
-            }
-
-            return response()->json([
-                'success' => false,
-                'message' => '1. Terjadi kesalahan saat registrasi. Silakan coba lagi. '
-            ],409);
+            return $this->handleRegistrationErrors($e->errorInfo[1]);
         } catch (Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Terjadi kesalahan saat registrasi. Silakan coba lagi.'
-            ],402);
+            return response()->json(['success' => false, 'message' => 'Terjadi kesalahan saat registrasi. Silakan coba lagi.'], 402);
         }
     }
 
     public function getUser(Request $request){
 
         $token = $request->api_token;
-        if($token == NULL){
+        if(empty($token)){
             return response()->json([
                 'succes' => false,
                 'message' => 'Anda Harus Login Ulang'

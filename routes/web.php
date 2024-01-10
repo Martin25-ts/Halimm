@@ -64,5 +64,5 @@ Route::post('/api/logout/mobile', [AuthController::class, 'logoutMobile']);
 Route::post('/api/user/mobile', [AuthController::class, 'getUser']);
 
 
-Route::post('/api/user/getListLocker', [DashboardController::class, 'getAllUserTransaction']);
+Route::post('/api/user/getListLocker', [OrderController::class, 'getUserLocker']);
 Route::post('/api/user/orderMobile', [OrderController::class, 'orderMobile']);
