@@ -33,7 +33,7 @@ class OrderController extends Controller
         $user = User::where("api_token", $token)->first();
 
         if (empty($user) || $token == null) {
-            return response()->json(["message" => "Gagal Mendapatkan List Locker"], 401);
+            return response()->json(["error" => "Gagal Mendapatkan List Locker"], 401);
         }
 
         $params = [
@@ -48,7 +48,7 @@ class OrderController extends Controller
 
         if($max == 0 || $max < $params['qty'] ){
             return response()->json([
-                "message" => "Gagal Membuat Transaksi   "
+                "error" => "Gagal Membuat TransaksiS"
             ],404);
         }else{
 

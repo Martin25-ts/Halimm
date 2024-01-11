@@ -35,13 +35,13 @@ class AuthController extends Controller
     private function handleRegistrationErrors($errorCode)
     {
         $message = ($errorCode == 1062) ? 'Email atau nomor ponsel sudah terdaftar.' : 'Terjadi kesalahan saat registrasi. Silakan coba lagi.';
-        return response()->json(['success' => false, 'message' => $message], ($errorCode == 1062) ? 401 : 409);
+        return response()->json(['success' => false, 'error' => $message], ($errorCode == 1062) ? 401 : 409);
     }
 
     private function handleAuthErrors($user, $username)
     {
-        return $user ? response()->json(['token' => $this->generateToken($user, $username)], 200) :
-            response()->json(['message' => 'Email atau Password salah'], 401);
+        return $user ? response()->json(['token' => $this->generateToken($user, $username), 'message' => 'Berhasil Login'], 200) :
+            response()->json(['error' => 'Email atau Password salah'], 401);
     }
 
     private function generateToken($user, $username)
@@ -94,7 +94,7 @@ class AuthController extends Controller
 
 
         return response()->json([
-            'message' => 'Email atau Password salah',
+            'error' => 'Email atau Password salah',
         ],401);
     }
 
@@ -112,7 +112,7 @@ class AuthController extends Controller
         if(empty($token)){
             return response()->json([
                 'succes' => false,
-                'message' => 'Anda Harus Login Ulang'
+                'error' => 'Anda Harus Login Ulang'
             ],401);
         }
 
@@ -123,13 +123,13 @@ class AuthController extends Controller
             $user->save();
             Auth::logout();
             return response()->json([
-                'message' => 'success'
+                'message' => 'Berhasil Keluar'
             ],200);
         }
 
         return response()->json([
             "success" => false,
-            "message" => "Anda akan dialihkan ke login"
+            "error" => "Anda akan dialihkan ke login"
         ],401);
 
     }
@@ -182,7 +182,7 @@ class AuthController extends Controller
         } catch (QueryException $e) {
             return $this->handleRegistrationErrors($e->errorInfo[1]);
         } catch (Exception $e) {
-            return response()->json(['success' => false, 'message' => 'Terjadi kesalahan saat registrasi. Silakan coba lagi.'], 402);
+            return response()->json(['success' => false, 'error' => 'Terjadi kesalahan saat registrasi. Silakan coba lagi.'], 402);
         }
     }
 
@@ -192,7 +192,7 @@ class AuthController extends Controller
         if(empty($token)){
             return response()->json([
                 'succes' => false,
-                'message' => 'Anda Harus Login Ulang'
+                'error' => 'Anda Harus Login Ulang'
             ],401);
         }
         $data = User::where("api_token", $token)->first();
@@ -202,12 +202,12 @@ class AuthController extends Controller
         } elseif (empty($data)) {
             return response()->json([
                 'succes' => false,
-                'message' => 'Anda Harus Login Ulang'
+                'error' => 'Anda Harus Login Ulang'
             ],401);
         } else {
             return response()->json([
                 'succes' => false,
-                'message' => 'Gagal Mendapatkan User anda akan logout'
+                'error' => 'Gagal Mendapatkan User anda akan logout'
             ],402);
         }
 
