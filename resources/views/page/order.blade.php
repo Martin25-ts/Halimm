@@ -58,7 +58,7 @@
                         <div class="input lockerqty w-100">
                             <div class="button-action">
 
-                                <button id="decrement" type="button" onclick="stepper(this)">
+                                <button id="decrement" type="button" max={{$max}} onclick="stepper(this)">
                                     <img src="https://ucarecdn.com/19524c7d-1bb8-408f-8b9b-21124f3e9c43/" alt="">
                                 </button>
                                 <button id="increment" type="button" max={{$max}} onclick="stepper(this)">

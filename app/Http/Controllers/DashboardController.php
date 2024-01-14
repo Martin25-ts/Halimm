@@ -24,10 +24,13 @@ class DashboardController extends Controller
 
     }
 
+
+    public function getAllUserTransaction($user_id){
+        $data = null;
+    }
+
     public function getAllLockersByLocation($location)
     {
-
-
 
         $lockers = Locker::join('ms_locations', 'ms_lockers.location_id', '=', 'ms_locations.location_id')
         ->where('ms_locations.location_url', '=', $location)

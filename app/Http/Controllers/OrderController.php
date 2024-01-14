@@ -106,7 +106,9 @@ class OrderController extends Controller
         }
 
 
-        return view('page.payment', compact('location', 'listlocker'));;
+
+
+        return view('page.payment', compact('location', 'listlocker'));
 
     }
 
@@ -176,10 +178,5 @@ class OrderController extends Controller
         }
 
     }
-
-
-
-
-
 
 }
